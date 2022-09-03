@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <!-- Navbar -->
+        <section class="container">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="#">News <span class="text-primary">Today</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="index.html">News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="blog.html">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <img src="/images/Avatar.png" alt="User Image">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </section>
+    </header>
+    <main>
+        <section class="container">
+           <h3 class="p-4">Answer of Some Questions</h3>
+
+        <div class="row">
+            <div class="col-4">
+                <div id="list-example" class="list-group">
+                    <a class="list-group-item list-group-item-action" href="#list-item-1">Whatis the difference between var, let and const?</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-2">What is the difference between regular functions and arrow functions?</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-3">What are the differences between forEach(), map(), find() and filter()?</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-4">Why we use template string in javascript?</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example"
+                    tabindex="0">
+                    <h4 id="list-item-1">Whatis the difference between var, let and const?</h4>
+                    <p>Ver : scope of a var variable is functional scope. It can be updated and re-declared into the scope. It can be declared
+                    without initialization. It can be accessed without initialization as its default value is “undefined”. hoisting done ,
+                    with initializing as 'default' value.
+                    
+                    Let : The scope of a let variable is block scope. It can be updated but cannot be re-declared into the scope. It can be
+                    declared without initialization. It cannot be accessed without initialization otherwise it will give 'referenceError'.
+                    Hoisting is done , but not initialized (this is the reason for error when we access the let variable before
+                    declaration/initialization
+                    
+                    Const : The scope of a const variable is block scope. It cannot be updated or re-declared into the scope. It cannot be
+                    declared without initialization. It cannot be accessed without initialization, as it cannot be declared without
+                    initialization. Hoisting is done, but not initialized (this is the reason for error when we access the const variable
+                    before declaration/initialization</p>
+                    <h4 id="list-item-2">What is the difference between regular functions and arrow functions?</h4>
+                    <p>Regular functions created using function declarations or expressions are constructible and callable. Since regular
+                    functions are constructible, they can be called using the new keyword. However, the arrow functions are only callable
+                    and not constructible, i.e arrow functions can never be used as constructor functions. Unlike regular functions, arrow
+                    functions do not have their own this . The value of this inside an arrow function remains the same throughout the
+                    lifecycle of the function and is always bound to the value of this in the closest non-arrow parent function.</p>
+                    <h4 id="list-item-3">What are the differences between forEach(), map(), find() and filter()?</h4>
+                    <p>forEach() : The forEach() method does not create a new array based on the given array. The forEach() method returns
+                    “undefined“. The forEach() method doesn’t return anything hence the method chaining technique cannot be applied here. It
+                    is not executed for empty elements. It is an ECMAScript5 (ES5) feature.
+                    
+                    map() : The map() method creates an entirely new array. The map() method returns the newly created array according to
+                    the provided callback function. With the map() method, we can chain the other array Instance methods i.e returned value
+                    of the map() method invokes the next method in the chain. It does not change the original array. It calls a function
+                    once for each element in an array.
+                    
+                    find() : The find() method is used to find all the descendant elements of the selected element. The find() method finds
+                    the element in the DOM tree by traversing through the root to the leaf. The find() method search through all the child
+                    elements only. It does not execute the function for empty elements. It does not change the original array. This method
+                    returns undefined if no elements are found.
+                    
+                    filter() : The filter() method is used to filter all the elements. The filter() method returns the element that matches
+                    and removes the element that does not match. The filter() method search through all the elements. The filter() method
+                    does not change the original array. The filter() method does not execute the function for empty elements. In filter()
+                    method a value is passed to the function as its this value</p>
+                    <h4 id="list-item-4">Why we use template string in javascript?</h4>
+                    <p>Template literals provide an easy way to interpolate variables and expressions into strings. The method is called string
+                    interpolation.</p>
+                </div>
+            </div>
+        </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

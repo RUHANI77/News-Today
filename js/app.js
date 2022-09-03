@@ -81,4 +81,8 @@ const displayCategoriesDetails = category => {
     });
 }
 
+/* Modal On details Button */
+
+
+
 newsCategories();
