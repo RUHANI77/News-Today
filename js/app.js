@@ -5,7 +5,6 @@ const newsCategories = async () => {
     const res = await fetch(url);
     const data = await res.json();
     displayCategories(data.data.news_category);
-
 }
 
 const displayCategories = categories => {
@@ -16,12 +15,15 @@ const displayCategories = categories => {
         // categoryDiv.classList.add('d-flex')
         categoryDiv.innerHTML = `
           <div>
-                <a onclick = "loadCategoriesDetails('${category.category_id}')" id="load-categories" class="p-2">${category.category_name}</a>
-
+                <a onclick = "loadCategoriesDetails('${category.category_id}'),toggleSpinner('${true}')" id="load-categories" class="p-2">${category.category_name}</a>
+                
           </div>
         `;
+         
         categoriesContainer.appendChild(categoryDiv)
     });
+    //..........loader start................
+    
 }
 // ...........Displaying News........
 
@@ -29,6 +31,7 @@ const loadCategoriesDetails = async (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${category_id}`;
 
     // console.log(url);
+   
 
     const res = await fetch(url);
     const data = await res.json();
@@ -91,9 +94,19 @@ const displayCategoriesDetails = category => {
         `;
         newsContainer.appendChild(newsDiv);
     });
-    // stop spinner or loader    
+    // stop spinner or loader  
+    toggleSpinner(false);
 }
 
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none');
+    }
+    else {
+        loaderSection.classList.add('d-none');
+    }
+}
 
 // Display Modal
 
