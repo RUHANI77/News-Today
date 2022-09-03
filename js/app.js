@@ -5,15 +5,15 @@ const newsCategories = async () => {
     const res = await fetch(url);
     const data = await res.json();
     displayCategories(data.data.news_category);
-   
+
 }
 
 const displayCategories = categories => {
     const categoriesContainer = document.getElementById('categories-container');
-    
+
     categories.forEach(category => {
         const categoryDiv = document.createElement('div');
-       // categoryDiv.classList.add('d-flex')
+        // categoryDiv.classList.add('d-flex')
         categoryDiv.innerHTML = `
           <div>
                 <a onclick = "loadCategoriesDetails('${category.category_id}')" class="p-2">${category.category_name}</a>
@@ -33,11 +33,12 @@ const loadCategoriesDetails = async (category_id) => {
     const res = await fetch(url);
     const data = await res.json();
     displayCategoriesDetails(data.data);
+
 }
 
 const displayCategoriesDetails = category => {
-      console.log(category);
-     
+    // console.log(category);
+
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = ' ';
     category.forEach(news => {
@@ -56,7 +57,7 @@ const displayCategoriesDetails = category => {
                                 <div class="d-flex justify-content-between">
                                     <div class="d-flex">
                                         <div>
-                                            <img src="${news.author.img}" alt="" style="width: 40px; height: 40px;">
+                                            <img src="${news.author.img}" class="rounded-circle" alt="" style="width: 40px; height: 40px;">
                                         </div>
                                         <div class="px-4">
                                              <p>${news.author.name ? news.author.name : 'No Data Found'}<br><span>${news.author.published_date ? news.author.published_date : 'No Data Found'}</span> </p>
@@ -69,7 +70,8 @@ const displayCategoriesDetails = category => {
                                         <p>${news.rating.badge}<br><span>${news.rating.number}</span></p>
                                     </div>
                                     <div>
-                                        <button class="btn btn-info">Details</button>
+                                        <button onclick = "loadDisplayModal('${news._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Show Details</button>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -81,8 +83,44 @@ const displayCategoriesDetails = category => {
     });
 }
 
+// Display Modal
+
+const loadDisplayModal = async id => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data[0]);
+}
+
 /* Modal On details Button */
 
+const displayNewsDetails = news => {
+    console.log(news);
+    const modalTitle = document.getElementById('newsDetailModalLabel');
+    
+    modalTitle.innerText = news.title; 
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+        <img class="img-fluid" src="${news.image_url}" alt="">
+        <p class="card-text">${news.details}</p>
+        <div class="d-flex justify-content-between">
+                                    <div class="d-flex">
+                                        <div>
+                                            <img src="${news.author.img}" class="rounded-circle" alt="" style="width: 40px; height: 40px;">
+                                        </div>
+                                        <div class="px-4">
+                                             <p>${news.author.name ? news.author.name : 'No Data Found'}<br><span>${news.author.published_date ? news.author.published_date : 'No Data Found'}</span> </p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="fw-bolder"><i class="fa-regular fa-eye"></i> ${news.total_view ? news.total_view : 'No Data Found'}</p>
+                                    </div>
+                                    <div>
+                                        <p>${news.rating.badge}<br><span>${news.rating.number}</span></p>
+                                    </div>
+                                </div>
 
+    `;
+}
 
 newsCategories();
