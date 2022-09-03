@@ -16,7 +16,7 @@ const displayCategories = categories => {
         // categoryDiv.classList.add('d-flex')
         categoryDiv.innerHTML = `
           <div>
-                <a onclick = "loadCategoriesDetails('${category.category_id}')" class="p-2">${category.category_name}</a>
+                <a onclick = "loadCategoriesDetails('${category.category_id}')" id="load-categories" class="p-2">${category.category_name}</a>
 
           </div>
         `;
@@ -41,6 +41,16 @@ const displayCategoriesDetails = category => {
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = ' ';
+
+    // display no News found
+    const noNews = document.getElementById('no-news-found');
+    if (category.length === 0) {
+        noNews.classList.remove('d-none');
+    }
+    else {
+        noNews.classList.add('d-none');
+    }
+
     category.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('col');
@@ -81,7 +91,9 @@ const displayCategoriesDetails = category => {
         `;
         newsContainer.appendChild(newsDiv);
     });
+    // stop spinner or loader    
 }
+
 
 // Display Modal
 
@@ -122,5 +134,7 @@ const displayNewsDetails = news => {
 
     `;
 }
+
+
 
 newsCategories();
