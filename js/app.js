@@ -167,7 +167,7 @@ const displayNewsDetails = news => {
                                     <div>
                                         <p>${news.rating.badge}<br><span>${news.rating.number}</span></p>
                                     </div>
-                                </div>
+         </div>
 
     `;
 }
