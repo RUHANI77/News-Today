@@ -39,8 +39,18 @@ const loadCategoriesDetails = async (category_id) => {
 
 }
 
+// Display news after click on a category
+
 const displayCategoriesDetails = category => {
-    // console.log(category);
+    console.log(category.length);
+    
+    // Total items Count for News 
+
+    const totalNews = document.getElementById('total-news');
+    totalNews.innerText = category.length;
+
+    // sort array by total_view
+    let x = category.sort((a, b) => (b.total_view > a.total_view ? 1 : -1));
 
     const newsContainer = document.getElementById('news-container');
     newsContainer.textContent = ' ';
@@ -94,9 +104,13 @@ const displayCategoriesDetails = category => {
         `;
         newsContainer.appendChild(newsDiv);
     });
+
+
     // stop spinner or loader  
     toggleSpinner(false);
 }
+
+// spinner or loader.......................
 
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
@@ -121,6 +135,7 @@ const loadDisplayModal = async id => {
 
 const displayNewsDetails = news => {
     console.log(news);
+
     const modalTitle = document.getElementById('newsDetailModalLabel');
     
     modalTitle.innerText = news.title; 
