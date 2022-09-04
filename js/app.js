@@ -4,6 +4,15 @@ const newsCategories = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`;
     const res = await fetch(url);
     const data = await res.json();
+
+    try {
+        if (data == "") throw "empty";
+
+    }
+    catch (err) {
+        console.log("error");
+    }
+
     displayCategories(data.data.news_category);
 }
 
@@ -93,7 +102,7 @@ const displayCategoriesDetails = category => {
                                         <p>${news.rating.badge}<br><span>${news.rating.number}</span></p>
                                     </div>
                                     <div>
-                                        <button onclick = "loadDisplayModal('${news._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Show Details</button>
+                                        <button onclick = "loadDisplayModal('${news._id}')" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newsDetailModal">Details</button>
                                         
                                     </div>
                                 </div>
